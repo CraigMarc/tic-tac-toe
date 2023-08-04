@@ -1,3 +1,5 @@
+"use strict";
+
 /*gameBoard module*/
 
 const Gameboard = (() => {
@@ -9,7 +11,7 @@ const Gameboard = (() => {
         gameboardArr[index] = sign;
     };
 
-
+    
     return { gameboardArr, setField };
 })();
 
@@ -21,7 +23,7 @@ const Gameboard = (() => {
 /*gamecontroller module*/
 
 const Gamecontroller = (() => {
-
+    let counter = 0
 
     /*event listener*/
 
@@ -31,7 +33,18 @@ const Gamecontroller = (() => {
 
         cell.addEventListener('click', (e) => {
             let value = cell.id
-            Gameboard.setField(value, "cr")
+            if(counter % 2 == 0) {
+                Gameboard.setField(value, "X")
+            }
+            
+            // if the number is odd
+            else {
+                Gameboard.setField(value, "O")
+            }
+            
+            counter = counter + 1
+            console.log(counter)
+            
             setBoard()
             console.log(Gameboard.gameboardArr)
         })
@@ -41,7 +54,7 @@ const Gamecontroller = (() => {
     const setBoard = () => {
         for (let i = 0; i < Gameboard.gameboardArr.length; i++) {
             let cell = document.getElementById(i);
-
+            
             cell.textContent = Gameboard.gameboardArr[i];
         }
 
@@ -49,6 +62,6 @@ const Gamecontroller = (() => {
 
     
 
-
+    return { counter };
 
 })();
