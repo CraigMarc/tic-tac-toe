@@ -34,12 +34,13 @@ const Gamecontroller = (() => {
 
         cell.addEventListener('click', (e) => {
             let value = cell.id
-            if(counter % 2 == 0) {
+
+            if(counter % 2 == 0  && Gameboard.gameboardArr[value] == "") {
                 Gameboard.setField(value, "X")
             }
             
             // if the number is odd
-            else {
+            else if (Gameboard.gameboardArr[value] == "") {
                 Gameboard.setField(value, "O")
             }
             
