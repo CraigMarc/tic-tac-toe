@@ -1,9 +1,12 @@
 const Gameboard = ((player, position) => {
-    let gameboardArr = ["", "", "", "", "", "", "", "", ""]
+    let gameboardArr = ["x", "x", "x", "", "", "", "", "", ""]
 
-    
+    for (let i = 0; i < gameboardArr.length; i++) {
+        let cell = document.getElementById(i);
+        cell.textContent = gameboardArr[i];
+    }
     return { player, position, gameboardArr };
-  })();
+})();
 
 console.log(Gameboard.gameboardArr)
 
