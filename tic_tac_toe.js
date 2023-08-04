@@ -1,5 +1,5 @@
 const Gameboard = ((player, position) => {
-    let gameboardArr = ["x", "x", "x", "o", "x", "o", "x", "o", "x"]
+    let gameboardArr = ["", "", "", "", "", "", "", "", ""]
 
     
     const setField = (index, sign) => {
@@ -40,4 +40,4 @@ const setBoard = () => {
     }
 
 }
-})()
+})();
