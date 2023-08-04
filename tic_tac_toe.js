@@ -6,3 +6,4 @@ const Gameboard = ((player, position) => {
   })();
 
 console.log(Gameboard.gameboardArr)
+
