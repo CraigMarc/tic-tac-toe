@@ -11,3 +11,19 @@ const Gameboard = ((player, position) => {
 
 console.log(Gameboard.gameboardArr)
 
+/*event listener*/
+
+const number = document.querySelectorAll('.cell');
+
+    number.forEach((cell) => {
+
+      cell.addEventListener('click', (e) => {
+        let value = cell.id
+
+        console.log(value)
+       
+
+
+      })
+    })
+
