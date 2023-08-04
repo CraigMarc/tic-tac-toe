@@ -23,6 +23,7 @@ const Gameboard = (() => {
 /*gamecontroller module*/
 
 const Gamecontroller = (() => {
+    
     let counter = 0
 
     /*event listener*/
@@ -44,9 +45,14 @@ const Gamecontroller = (() => {
             
             counter = counter + 1
             console.log(counter)
-            
             setBoard()
             console.log(Gameboard.gameboardArr)
+
+            if (counter == 9) {
+                let message = document.getElementById('message')
+                message.textContent = "Tie"
+            }
+
         })
     })
 
