@@ -43,23 +43,23 @@ const Gamecontroller = (() => {
             else if (Gameboard.gameboardArr[value] == "") {
                 Gameboard.setField(value, "O")
             }
-console.log(checkWinner())
-            
+           
+
             if (checkWinner() == "winner" && counter % 2 == 0) {
-                message.textContent = "X Wins" 
+                message.textContent = "X Wins"
             }
             if (checkWinner() == "winner" && counter % 2 != 0) {
-                message.textContent = "O Wins" 
+                message.textContent = "O Wins"
             }
 
             setBoard()
             console.log(Gameboard.gameboardArr)
-
+            counter = counter + 1
             if (counter == 9) {
-                
+
                 message.textContent = "Tie"
             }
-            counter = counter + 1
+
         })
     })
 
@@ -84,22 +84,22 @@ console.log(checkWinner())
             [0, 4, 8],
             [2, 4, 6]
         ]
-        
-       
+
+
         for (let i = 0; i < winner.length; i++) {
-          
-           
-            if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]] 
-                 && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]] 
+
+
+            if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]]
+                && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]]
                 && Gameboard.gameboardArr[winner[i][0]] != "" && Gameboard.gameboardArr[winner[i][1]] != ""
                 && Gameboard.gameboardArr[winner[i][2]] != "") {
-            return 'winner'
-        }
-       
-    }
-    return 'loser'
+                return 'winner'
+            }
 
-    
+        }
+        return 'loser'
+
+
 
     }
 
