@@ -23,7 +23,7 @@ const Gameboard = (() => {
 /*gamecontroller module*/
 
 const Gamecontroller = (() => {
-
+    let message = document.getElementById('message')
     let counter = 0
 
     /*event listener*/
@@ -44,16 +44,22 @@ const Gamecontroller = (() => {
                 Gameboard.setField(value, "O")
             }
 console.log(checkWinner())
-            counter = counter + 1
+            
+            if (checkWinner() == "winner" && counter % 2 == 0) {
+                message.textContent = "X Wins" 
+            }
+            if (checkWinner() == "winner" && counter % 2 != 0) {
+                message.textContent = "O Wins" 
+            }
 
             setBoard()
             console.log(Gameboard.gameboardArr)
 
             if (counter == 9) {
-                let message = document.getElementById('message')
+                
                 message.textContent = "Tie"
             }
-
+            counter = counter + 1
         })
     })
 
