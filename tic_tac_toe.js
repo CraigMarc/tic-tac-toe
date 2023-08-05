@@ -11,10 +11,13 @@ const Gameboard = (() => {
         gameboardArr[index] = sign;
     };
 
-  
+    const resetField = () => {
+        gameboardArr = ["", "", "", "", "", "", "", "", ""]
+        
+    };
 
 
-    return { gameboardArr, setField };
+    return { gameboardArr, setField, resetField };
 })();
 
 
@@ -34,8 +37,9 @@ const Gamecontroller = (() => {
    const btn = document.getElementById('reset');
 
    btn.addEventListener('click', () => {
-       Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]
-   
+    /*
+       Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]*/
+   Gameboard.resetField()
    setBoard()
    counter = 0
    
