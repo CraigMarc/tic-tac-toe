@@ -42,39 +42,49 @@ const Gamecontroller = (() => {
 
     number.forEach((cell) => {
 
-        cell.addEventListener('click', (e) => {
-            let value = cell.id
-        
-            if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
-                Gameboard.setField(value, "X")
-                console.log(Gameboard.gameboardArr)
-                console.log(value)
-            }
-
-            // if the number is odd
-            else if (Gameboard.gameboardArr[value] == "") {
-                Gameboard.setField(value, "O")
-            }
-           
-
-            if (checkWinner() == "winner" && counter % 2 == 0) {
-                message.textContent = "X Wins"
-                
-            }
-            if (checkWinner() == "winner" && counter % 2 != 0) {
-                message.textContent = "O Wins"
-            }
-
-            setBoard()
-            
-            counter = counter + 1
-            if (counter == 9) {
-
-                message.textContent = "Tie"
-            }
-
-        })
+        cell.addEventListener('click', play)
     })
+
+    function removeListener() {
+        number.forEach((cell) => {
+            cell.removeEventListener('click', play)
+           
+        })
+    }
+       
+    
+
+    function play(e) {
+        
+        let value = e.target.id
+        if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
+            Gameboard.setField(value, "X")
+            console.log(Gameboard.gameboardArr)
+            console.log(value)
+        }
+
+        // if the number is odd
+        else if (Gameboard.gameboardArr[value] == "") {
+            Gameboard.setField(value, "O")
+        }
+       
+
+        if (checkWinner() == "winner" && counter % 2 == 0) {
+            message.textContent = "X Wins"
+            removeListener()
+        }
+        if (checkWinner() == "winner" && counter % 2 != 0) {
+            message.textContent = "O Wins"
+        }
+
+        setBoard()
+        
+        counter = counter + 1
+        if (counter == 9) {
+
+            message.textContent = "Tie"
+        }
+    }
 
     /*set board*/
     const setBoard = () => {
