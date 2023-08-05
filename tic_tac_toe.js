@@ -89,10 +89,7 @@ console.log(checkWinner())
                 && Gameboard.gameboardArr[winner[i][2]] != "") {
             return 'winner'
         }
-        console.log(Gameboard.gameboardArr[0])
-        console.log(Gameboard.gameboardArr[4])
-        console.log(Gameboard.gameboardArr[8])
-
+       
     }
     return 'loser'
 
