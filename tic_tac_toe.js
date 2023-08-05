@@ -32,8 +32,8 @@ const Gameboard = (() => {
 const Gamecontroller = (() => {
     let message = document.getElementById('message')
     let counter = 0
-
-
+    let player = document.getElementById('player')
+    player.textContent = "X's Turn"
    
 
     /*event listener*/
@@ -65,13 +65,13 @@ const Gamecontroller = (() => {
         let value = e.target.id
         if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
-            console.log(Gameboard.gameboardArr)
-            console.log(value)
+            player.textContent = "O's Turn"
         }
 
         // if the number is odd
         else if (Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "O")
+            player.textContent = "X's Turn"
         }
 
         counter = counter + 1
