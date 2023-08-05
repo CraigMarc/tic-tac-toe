@@ -11,6 +11,8 @@ const Gameboard = (() => {
         gameboardArr[index] = sign;
     };
 
+  
+
 
     return { gameboardArr, setField };
 })();
@@ -26,6 +28,19 @@ const Gamecontroller = (() => {
     let message = document.getElementById('message')
     let counter = 0
 
+
+     /*reset button listner*/
+
+   const btn = document.getElementById('reset');
+
+   btn.addEventListener('click', () => {
+       Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]
+   
+   setBoard()
+   counter = 0
+   
+   })
+
     /*event listener*/
 
     const number = document.querySelectorAll('.cell');
@@ -34,9 +49,11 @@ const Gamecontroller = (() => {
 
         cell.addEventListener('click', (e) => {
             let value = cell.id
-
+        
             if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
                 Gameboard.setField(value, "X")
+                console.log(Gameboard.gameboardArr)
+                console.log(value)
             }
 
             // if the number is odd
@@ -53,7 +70,7 @@ const Gamecontroller = (() => {
             }
 
             setBoard()
-            console.log(Gameboard.gameboardArr)
+            
             counter = counter + 1
             if (counter == 9) {
 
@@ -100,10 +117,12 @@ const Gamecontroller = (() => {
         }
         return 'loser'
 
-
-
     }
 
-    return { counter };
+ 
+
+
+
+    return { counter, setBoard };
 
 })();
