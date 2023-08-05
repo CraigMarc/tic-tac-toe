@@ -51,7 +51,13 @@ const Gamecontroller = (() => {
            
         })
     }
-       
+     
+    function addListener() {
+        number.forEach((cell) => {
+
+            cell.addEventListener('click', play)
+        })
+    }
     
 
     function play(e) {
@@ -75,6 +81,7 @@ const Gamecontroller = (() => {
         }
         if (checkWinner() == "winner" && counter % 2 != 0) {
             message.textContent = "O Wins"
+            removeListener()
         }
 
         setBoard()
@@ -83,6 +90,7 @@ const Gamecontroller = (() => {
         if (counter == 9) {
 
             message.textContent = "Tie"
+            removeListener()
         }
     }
 
@@ -136,7 +144,7 @@ const Gamecontroller = (() => {
    setBoard()
    message.textContent = ""
    counter = 0
-   
+   addListener()
    })
  
 
