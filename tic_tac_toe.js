@@ -12,7 +12,9 @@ const Gameboard = (() => {
     };
 
     const resetField = () => {
-        gameboardArr = ["", "", "", "", "", "", "", "", ""]
+       for (let i = 0; i < gameboardArr.length; i++) {
+        gameboardArr[i] = ""
+       }
         
     };
 
