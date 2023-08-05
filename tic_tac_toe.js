@@ -34,18 +34,7 @@ const Gamecontroller = (() => {
     let counter = 0
 
 
-     /*reset button listner*/
-
-   const btn = document.getElementById('reset');
-
-   btn.addEventListener('click', () => {
-    /*
-       Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]*/
-   Gameboard.resetField()
-   setBoard()
-   counter = 0
    
-   })
 
     /*event listener*/
 
@@ -70,6 +59,7 @@ const Gamecontroller = (() => {
 
             if (checkWinner() == "winner" && counter % 2 == 0) {
                 message.textContent = "X Wins"
+                
             }
             if (checkWinner() == "winner" && counter % 2 != 0) {
                 message.textContent = "O Wins"
@@ -125,6 +115,19 @@ const Gamecontroller = (() => {
 
     }
 
+      /*reset button listner*/
+
+   const btn = document.getElementById('reset');
+
+   btn.addEventListener('click', () => {
+    /*
+       Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]*/
+   Gameboard.resetField()
+   setBoard()
+   message.textContent = ""
+   counter = 0
+   
+   })
  
 
 
