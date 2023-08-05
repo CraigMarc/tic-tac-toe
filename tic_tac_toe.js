@@ -43,12 +43,12 @@ const Gamecontroller = (() => {
             else if (Gameboard.gameboardArr[value] == "") {
                 Gameboard.setField(value, "O")
             }
-
+console.log(checkWinner())
             counter = counter + 1
 
             setBoard()
             console.log(Gameboard.gameboardArr)
-            console.log(checkWinner())
+
             if (counter == 9) {
                 let message = document.getElementById('message')
                 message.textContent = "Tie"
@@ -67,7 +67,7 @@ const Gamecontroller = (() => {
 
     }
 
-    const checkWinner = () => {
+    function checkWinner() {
         const winner = [
             [0, 1, 2],
             [3, 4, 5],
@@ -75,21 +75,28 @@ const Gamecontroller = (() => {
             [0, 3, 6],
             [1, 4, 7],
             [2, 5, 8],
-            [0, 4, 8]
+            [0, 4, 8],
             [2, 4, 6]
         ]
+        
        
         for (let i = 0; i < winner.length; i++) {
-            if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]]
-                 && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]]) {
+          
+           
+            if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]] 
+                 && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]] 
+                && Gameboard.gameboardArr[winner[i][0]] != "" && Gameboard.gameboardArr[winner[i][1]] != ""
+                && Gameboard.gameboardArr[winner[i][2]] != "") {
             return 'winner'
         }
-        else {return 'loser'
+        console.log(Gameboard.gameboardArr[0])
+        console.log(Gameboard.gameboardArr[4])
+        console.log(Gameboard.gameboardArr[8])
 
     }
-       
+    return 'loser'
 
-    }
+    
 
     }
 
