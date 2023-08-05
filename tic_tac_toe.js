@@ -73,25 +73,28 @@ const Gamecontroller = (() => {
         else if (Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "O")
         }
-       
 
-        if (checkWinner() == "winner" && counter % 2 == 0) {
-            message.textContent = "X Wins"
-            removeListener()
-        }
-        if (checkWinner() == "winner" && counter % 2 != 0) {
-            message.textContent = "O Wins"
-            removeListener()
-        }
-
-        setBoard()
-        
         counter = counter + 1
+
         if (counter == 9) {
 
             message.textContent = "Tie"
             removeListener()
         }
+
+        if (checkWinner() == "winner" && counter % 2 == 0) {
+            message.textContent = "O Wins"
+            removeListener()
+        }
+        if (checkWinner() == "winner" && counter % 2 != 0) {
+            message.textContent = "X Wins"
+            removeListener()
+        }
+
+        setBoard()
+        
+        
+      
     }
 
     /*set board*/
