@@ -91,7 +91,8 @@ const Gamecontroller = (() => {
 
             if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]]
                 && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]]
-                && Gameboard.gameboardArr[winner[i][0]] != "" && Gameboard.gameboardArr[winner[i][1]] != ""
+                && Gameboard.gameboardArr[winner[i][0]] != "" 
+                && Gameboard.gameboardArr[winner[i][1]] != ""
                 && Gameboard.gameboardArr[winner[i][2]] != "") {
                 return 'winner'
             }
