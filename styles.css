@@ -1,4 +1,17 @@
+body {
+  text-align: center;
+  width: 100%;
+  background-color: #becccf;
+}
+
+.container2 {
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
 .container {
+    background-color: antiquewhite;
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 100px 100px 100px;
@@ -15,4 +28,7 @@
     
   }
 
-  
+  #reset {
+    padding: 5px 15px;
+    border-radius: 10px;
+  }

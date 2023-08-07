@@ -12,10 +12,10 @@ const Gameboard = (() => {
     };
 
     const resetField = () => {
-       for (let i = 0; i < gameboardArr.length; i++) {
-        gameboardArr[i] = ""
-       }
-        
+        for (let i = 0; i < gameboardArr.length; i++) {
+            gameboardArr[i] = ""
+        }
+
     };
 
 
@@ -34,14 +34,14 @@ const Gamecontroller = (() => {
     let counter = 0
     let player = document.getElementById('player')
     player.textContent = "X's Turn"
-   
+
     /*select player*/
-const playerNumber = document.querySelectorAll('#player');
+    const playerNumber = document.querySelectorAll('#player');
 
-playerNumber.forEach((cell) => {
+    playerNumber.forEach((cell) => {
 
-    cell.addEventListener('click', play)
-})
+        cell.addEventListener('click', play)
+    })
 
 
 
@@ -57,20 +57,22 @@ playerNumber.forEach((cell) => {
     function removeListener() {
         number.forEach((cell) => {
             cell.removeEventListener('click', play)
-           
+
         })
     }
-     
+
     function addListener() {
         number.forEach((cell) => {
 
             cell.addEventListener('click', play)
         })
     }
-    
+/*play round*/
 
     function play(e) {
-         console.log(e.target.value)
+        let playerN = []
+        playerN.push(e.target.value)
+        console.log(playerN[0])
         let value = e.target.id
         if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
@@ -87,7 +89,7 @@ playerNumber.forEach((cell) => {
 
         if (counter == 9) {
 
-            message.textContent = "Tie"
+            message.textContent = "Its a Tie"
             removeListener()
         }
 
@@ -101,9 +103,9 @@ playerNumber.forEach((cell) => {
         }
 
         setBoard()
-        
-        
-      
+
+
+
     }
 
     /*set board*/
@@ -134,7 +136,7 @@ playerNumber.forEach((cell) => {
 
             if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]]
                 && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]]
-                && Gameboard.gameboardArr[winner[i][0]] != "" 
+                && Gameboard.gameboardArr[winner[i][0]] != ""
                 && Gameboard.gameboardArr[winner[i][1]] != ""
                 && Gameboard.gameboardArr[winner[i][2]] != "") {
                 return 'winner'
@@ -145,21 +147,25 @@ playerNumber.forEach((cell) => {
 
     }
 
-      /*reset button listner*/
+    /*reset button listner*/
 
-   const btn = document.getElementById('reset');
+    const btn = document.getElementById('reset');
 
-   btn.addEventListener('click', () => {
-    /*
-       Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]*/
-   Gameboard.resetField()
-   setBoard()
-   message.textContent = ""
-   counter = 0
-   addListener()
-   })
- 
+    btn.addEventListener('click', () => {
+        /*
+           Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]*/
+        Gameboard.resetField()
+        setBoard()
+        message.textContent = ""
+        counter = 0
+        addListener()
+    })
 
+    function getComputerChoice() {
+        let computerChoice = Math.floor(Math.random() * 9);
+
+        return computerChoice
+    }
 
 
     return { counter, setBoard };
