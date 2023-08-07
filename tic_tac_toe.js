@@ -87,9 +87,12 @@ const Gamecontroller = (() => {
         }
 
 
-        // if the number is odd
-        
+        // computer result added
+       
             Gameboard.setField(computerChoice, "O")
+        
+        
+
             player.textContent = "X's Turn"
                    
         
@@ -104,16 +107,12 @@ const Gamecontroller = (() => {
 
         if (checkWinner() != "loser") {
             message.textContent = checkWinner() + "Wins"
-            console.log(checkWinner())
+            
             removeListener()
         }
 
        
-        /*
-        if (checkWinner() != "winner" && counter % 2 != 0) {
-            message.textContent = "X Wins"
-            removeListener()
-        }*/
+      
 
         setBoard()
 
@@ -165,8 +164,7 @@ const Gamecontroller = (() => {
     const btn = document.getElementById('reset');
 
     btn.addEventListener('click', () => {
-        /*
-           Gameboard.gameboardArr = ["", "", "", "", "", "", "", "", ""]*/
+        
         Gameboard.resetField()
         setBoard()
         message.textContent = ""
