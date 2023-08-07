@@ -35,13 +35,7 @@ const Gamecontroller = (() => {
     let player = document.getElementById('player')
     player.textContent = "X's Turn"
 
-    /*select player*/
-    const playerNumber = document.querySelectorAll('#player');
-
-    playerNumber.forEach((cell) => {
-
-        cell.addEventListener('click', play)
-    })
+   
 
 
 
@@ -155,6 +149,7 @@ const Gamecontroller = (() => {
         Gameboard.resetField()
         setBoard()
         message.textContent = ""
+        player.textContent = "X's Turn"
         counter = 0
         addListener()
     })
