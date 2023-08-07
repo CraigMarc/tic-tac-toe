@@ -64,7 +64,10 @@ const Gamecontroller = (() => {
 /*play round*/
 
     function play(e) {
+
         let computerChoice = 0
+        let endgame = 0
+
         for (let i = 0; i < 25; i++) {
             computerChoice = getComputerChoice()
             if (Gameboard.gameboardArr[computerChoice] == "") {
@@ -78,6 +81,10 @@ const Gamecontroller = (() => {
             Gameboard.setField(value, "X")
             player.textContent = "O's Turn"
         }
+
+        checkResult()
+
+        /*make sure spot not taken*/
         for (let i = 0; i < 25; i++) {
             computerChoice = getComputerChoice()
             if (Gameboard.gameboardArr[computerChoice] == "") {
@@ -88,29 +95,28 @@ const Gamecontroller = (() => {
 
 
         // computer result added
-       
+        if (endgame == 0) {
             Gameboard.setField(computerChoice, "O")
-        
-        
-
             player.textContent = "X's Turn"
-                   
+            checkResult()
+        }       
         
-
+        function checkResult () {
         
         if (Gameboard.gameboardArr.indexOf("") == -1 && checkWinner() == "loser") {
 
-            message.textContent = "Its a Tie"
+            message.textContent = "It's a Tie"
             removeListener()
+            endgame = 1
         }
         
 
         if (checkWinner() != "loser") {
-            message.textContent = checkWinner() + "Wins"
+            message.textContent = checkWinner() + " Wins"
             
             removeListener()
         }
-
+    }
        
       
 
