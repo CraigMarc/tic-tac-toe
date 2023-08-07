@@ -72,12 +72,20 @@ const Gamecontroller = (() => {
             }
             
         }
-        console.log(computerChoice)
+        
         let value = e.target.id
         if (Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
             player.textContent = "O's Turn"
         }
+        for (let i = 0; i < 25; i++) {
+            computerChoice = getComputerChoice()
+            if (Gameboard.gameboardArr[computerChoice] == "") {
+                break;
+            }
+            
+        }
+console.log(computerChoice)
 
         // if the number is odd
         
@@ -87,14 +95,16 @@ const Gamecontroller = (() => {
 
         counter = counter + 1
 
-        if (Gameboard.gameboardArr.indexOf("") == -1) {
+        
 
-            message.textContent = "Its a Tie"
+        if (checkWinner() != "loser") {
+            message.textContent = checkWinner() + "Wins"
             removeListener()
         }
 
-        if (checkWinner() != "loser" && counter % 2 == 0) {
-            message.textContent = checkWinner() + "Wins"
+        if (Gameboard.gameboardArr.indexOf("") == -1) {
+
+            message.textContent = "Its a Tie"
             removeListener()
         }
         /*
