@@ -35,7 +35,7 @@ const Gamecontroller = (() => {
     let player = document.getElementById('player')
     player.textContent = "X's Turn"
 
-   
+
 
 
 
@@ -61,7 +61,7 @@ const Gamecontroller = (() => {
             cell.addEventListener('click', play)
         })
     }
-/*play round*/
+    /*play round*/
 
     function play(e) {
 
@@ -73,9 +73,9 @@ const Gamecontroller = (() => {
             if (Gameboard.gameboardArr[computerChoice] == "") {
                 break;
             }
-            
+
         }
-        
+
         let value = e.target.id
         if (Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
@@ -85,42 +85,43 @@ const Gamecontroller = (() => {
         checkResult()
 
         /*make sure spot not taken*/
-        
-        for (let i = 0; i < 250; i++) {
-            computerChoice = getComputerChoice()
-            if (Gameboard.gameboardArr[computerChoice] == "") {
-                break;
+        console.log(endgame)
+        if (endgame == 0) {
+            for (let i = 0; i < 250; i++) {
+                computerChoice = getComputerChoice()
+                if (Gameboard.gameboardArr[computerChoice] == "") {
+                    break;
+                }
+
             }
-            
         }
 
-       
 
         // computer result added
         if (endgame == 0) {
             Gameboard.setField(computerChoice, "O")
             player.textContent = "X's Turn"
             checkResult()
-        }       
-        
-        function checkResult () {
-        
-        if (Gameboard.gameboardArr.indexOf("") == -1 && checkWinner() == "loser") {
-
-            message.textContent = "It's a Tie"
-            removeListener()
-            endgame = 1
         }
-        
 
-        if (checkWinner() != "loser") {
-            message.textContent = checkWinner() + " Wins"
-            
-            removeListener()
+        function checkResult() {
+
+            if (Gameboard.gameboardArr.indexOf("") == -1 && checkWinner() == "loser") {
+
+                message.textContent = "It's a Tie"
+                removeListener()
+                endgame = 1
+            }
+
+
+            if (checkWinner() != "loser") {
+                message.textContent = checkWinner() + " Wins"
+                endgame = 1
+                removeListener()
+            }
         }
-    }
-       
-      
+
+
 
         setBoard()
 
@@ -159,7 +160,7 @@ const Gamecontroller = (() => {
                 && Gameboard.gameboardArr[winner[i][0]] != ""
                 && Gameboard.gameboardArr[winner[i][1]] != ""
                 && Gameboard.gameboardArr[winner[i][2]] != "") {
-                return Gameboard.gameboardArr[winner[i][0]] 
+                return Gameboard.gameboardArr[winner[i][0]]
             }
 
         }
@@ -172,7 +173,7 @@ const Gamecontroller = (() => {
     const btn = document.getElementById('reset');
 
     btn.addEventListener('click', () => {
-        
+
         Gameboard.resetField()
         setBoard()
         message.textContent = ""
