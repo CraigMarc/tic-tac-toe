@@ -85,7 +85,7 @@ const Gamecontroller = (() => {
         checkResult()
 
         /*make sure spot not taken*/
-        console.log(endgame)
+        
         if (endgame == 0) {
             for (let i = 0; i < 250; i++) {
                 computerChoice = getComputerChoice()
