@@ -9,6 +9,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 
+
 }
 .container {
     background-color: antiquewhite;
@@ -25,6 +26,7 @@ justify-content: center;
    align-items: center;
    justify-content: space-around;
     font-size: 50px;
+    background-color: antiquewhite;
     
   }
 

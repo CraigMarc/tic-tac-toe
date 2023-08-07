@@ -70,9 +70,7 @@ const Gamecontroller = (() => {
 /*play round*/
 
     function play(e) {
-        let playerN = []
-        playerN.push(e.target.value)
-        console.log(playerN[0])
+        
         let value = e.target.id
         if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
