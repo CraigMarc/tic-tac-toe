@@ -64,35 +64,44 @@ const Gamecontroller = (() => {
 /*play round*/
 
     function play(e) {
-        
+        let computerChoice = 0
+        for (let i = 0; i < 25; i++) {
+            computerChoice = getComputerChoice()
+            if (Gameboard.gameboardArr[computerChoice] == "") {
+                break;
+            }
+            
+        }
+        console.log(computerChoice)
         let value = e.target.id
-        if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
+        if (Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
             player.textContent = "O's Turn"
         }
 
         // if the number is odd
-        else if (Gameboard.gameboardArr[value] == "") {
-            Gameboard.setField(value, "O")
+        
+            Gameboard.setField(computerChoice, "O")
             player.textContent = "X's Turn"
-        }
+        
 
         counter = counter + 1
 
-        if (counter == 9) {
+        if (Gameboard.gameboardArr.indexOf("") == -1) {
 
             message.textContent = "Its a Tie"
             removeListener()
         }
 
-        if (checkWinner() == "winner" && counter % 2 == 0) {
-            message.textContent = "O Wins"
+        if (checkWinner() != "loser" && counter % 2 == 0) {
+            message.textContent = checkWinner() + "Wins"
             removeListener()
         }
-        if (checkWinner() == "winner" && counter % 2 != 0) {
+        /*
+        if (checkWinner() != "winner" && counter % 2 != 0) {
             message.textContent = "X Wins"
             removeListener()
-        }
+        }*/
 
         setBoard()
 
@@ -131,7 +140,7 @@ const Gamecontroller = (() => {
                 && Gameboard.gameboardArr[winner[i][0]] != ""
                 && Gameboard.gameboardArr[winner[i][1]] != ""
                 && Gameboard.gameboardArr[winner[i][2]] != "") {
-                return 'winner'
+                return Gameboard.gameboardArr[winner[i][0]] 
             }
 
         }
