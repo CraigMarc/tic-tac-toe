@@ -85,7 +85,8 @@ const Gamecontroller = (() => {
         checkResult()
 
         /*make sure spot not taken*/
-        for (let i = 0; i < 25; i++) {
+        
+        for (let i = 0; i < 250; i++) {
             computerChoice = getComputerChoice()
             if (Gameboard.gameboardArr[computerChoice] == "") {
                 break;
@@ -93,6 +94,7 @@ const Gamecontroller = (() => {
             
         }
 
+       
 
         // computer result added
         if (endgame == 0) {
