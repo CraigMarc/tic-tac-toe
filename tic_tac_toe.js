@@ -85,28 +85,30 @@ const Gamecontroller = (() => {
             }
             
         }
-console.log(computerChoice)
+
 
         // if the number is odd
         
             Gameboard.setField(computerChoice, "O")
             player.textContent = "X's Turn"
+                   
         
 
-        counter = counter + 1
-
         
-
-        if (checkWinner() != "loser") {
-            message.textContent = checkWinner() + "Wins"
-            removeListener()
-        }
-
-        if (Gameboard.gameboardArr.indexOf("") == -1) {
+        if (Gameboard.gameboardArr.indexOf("") == -1 && checkWinner() == "loser") {
 
             message.textContent = "Its a Tie"
             removeListener()
         }
+        
+
+        if (checkWinner() != "loser") {
+            message.textContent = checkWinner() + "Wins"
+            console.log(checkWinner())
+            removeListener()
+        }
+
+       
         /*
         if (checkWinner() != "winner" && counter % 2 != 0) {
             message.textContent = "X Wins"
