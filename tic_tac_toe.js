@@ -156,3 +156,26 @@ const Gamecontroller = (() => {
     return { counter, setBoard };
 
 })();
+
+/*select player*/
+let playerNumber = 2
+const playerSelect = document.querySelectorAll('#player');
+
+playerSelect.forEach((playerSelect) => {
+     playerSelect.addEventListener('click', () => {
+         
+playerNumber = playerSelect.value 
+
+
+console.log(playerNumber)  
+
+     })
+})
+
+function getComputerChoice() {
+    let computerChoice = Math.floor(Math.random() * 9);
+
+    return computerChoice
+}
+
+console.log(getComputerChoice())
