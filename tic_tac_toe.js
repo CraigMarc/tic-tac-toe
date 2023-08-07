@@ -35,6 +35,15 @@ const Gamecontroller = (() => {
     let player = document.getElementById('player')
     player.textContent = "X's Turn"
    
+    /*select player*/
+const playerNumber = document.querySelectorAll('#player');
+
+playerNumber.forEach((cell) => {
+
+    cell.addEventListener('click', play)
+})
+
+
 
     /*event listener*/
 
@@ -61,7 +70,7 @@ const Gamecontroller = (() => {
     
 
     function play(e) {
-        
+         console.log(e.target.value)
         let value = e.target.id
         if (counter % 2 == 0 && Gameboard.gameboardArr[value] == "") {
             Gameboard.setField(value, "X")
@@ -157,25 +166,3 @@ const Gamecontroller = (() => {
 
 })();
 
-/*select player*/
-let playerNumber = 2
-const playerSelect = document.querySelectorAll('#player');
-
-playerSelect.forEach((playerSelect) => {
-     playerSelect.addEventListener('click', () => {
-         
-playerNumber = playerSelect.value 
-
-
-console.log(playerNumber)  
-
-     })
-})
-
-function getComputerChoice() {
-    let computerChoice = Math.floor(Math.random() * 9);
-
-    return computerChoice
-}
-
-console.log(getComputerChoice())
