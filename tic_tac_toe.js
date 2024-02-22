@@ -3,195 +3,163 @@
 /*gameBoard module*/
 
 const Gameboard = (() => {
-    let gameboardArr = ["", "", "", "", "", "", "", "", ""]
+  let gameboardArr = ["", "", "", "", "", "", "", "", ""];
 
-    /*changes array to set player choice*/
-    const setField = (index, sign) => {
+  /*changes array to set player choice*/
+  const setField = (index, sign) => {
+    gameboardArr[index] = sign;
+  };
 
-        gameboardArr[index] = sign;
-    };
+  const resetField = () => {
+    for (let i = 0; i < gameboardArr.length; i++) {
+      gameboardArr[i] = "";
+    }
+  };
 
-    const resetField = () => {
-        for (let i = 0; i < gameboardArr.length; i++) {
-            gameboardArr[i] = ""
-        }
-
-    };
-
-
-    return { gameboardArr, setField, resetField };
+  return { gameboardArr, setField, resetField };
 })();
-
-
-
-
-
-
-
 
 /*gamecontroller module*/
 
 const Gamecontroller = (() => {
-    let message = document.getElementById('message')
-    let counter = 0
-    let player = document.getElementById('player')
-    player.textContent = "X's Turn"
+  let message = document.getElementById("message");
+  let counter = 0;
+  let player = document.getElementById("player");
+  player.textContent = "X's Turn";
 
+  /*event listener*/
 
+  const number = document.querySelectorAll(".cell");
 
+  number.forEach((cell) => {
+    cell.addEventListener("click", play);
+  });
 
-
-    /*event listener*/
-
-    const number = document.querySelectorAll('.cell');
-
+  function removeListener() {
     number.forEach((cell) => {
+      cell.removeEventListener("click", play);
+    });
+  }
 
-        cell.addEventListener('click', play)
-    })
+  function addListener() {
+    number.forEach((cell) => {
+      cell.addEventListener("click", play);
+    });
+  }
+  /*play round*/
 
-    function removeListener() {
-        number.forEach((cell) => {
-            cell.removeEventListener('click', play)
+  function play(e) {
+    let computerChoice = 0;
+    let endgame = 0;
 
-        })
+    for (let i = 0; i < 25; i++) {
+      computerChoice = getComputerChoice();
+      if (Gameboard.gameboardArr[computerChoice] == "") {
+        break;
+      }
     }
 
-    function addListener() {
-        number.forEach((cell) => {
-
-            cell.addEventListener('click', play)
-        })
-    }
-    /*play round*/
-
-    function play(e) {
-
-        let computerChoice = 0
-        let endgame = 0
-
-        for (let i = 0; i < 25; i++) {
-            computerChoice = getComputerChoice()
-            if (Gameboard.gameboardArr[computerChoice] == "") {
-                break;
-            }
-
-        }
-
-        let value = e.target.id
-        if (Gameboard.gameboardArr[value] == "") {
-            Gameboard.setField(value, "X")
-            player.textContent = "O's Turn"
-        }
-
-        checkResult()
-
-        /*make sure spot not taken*/
-        
-        if (endgame == 0) {
-            for (let i = 0; i < 250; i++) {
-                computerChoice = getComputerChoice()
-                if (Gameboard.gameboardArr[computerChoice] == "") {
-                    break;
-                }
-
-            }
-        }
-
-
-        // computer result added
-        if (endgame == 0) {
-            Gameboard.setField(computerChoice, "O")
-            player.textContent = "X's Turn"
-            checkResult()
-        }
-
-        function checkResult() {
-
-            if (Gameboard.gameboardArr.indexOf("") == -1 && checkWinner() == "loser") {
-
-                message.textContent = "It's a Tie"
-                removeListener()
-                endgame = 1
-            }
-
-
-            if (checkWinner() != "loser") {
-                message.textContent = checkWinner() + " Wins"
-                endgame = 1
-                removeListener()
-            }
-        }
-
-
-
-        setBoard()
-
-
-
+    let value = e.target.id;
+    if (Gameboard.gameboardArr[value] == "") {
+      Gameboard.setField(value, "X");
+      player.textContent = "O's Turn";
     }
 
-    /*set board*/
-    const setBoard = () => {
-        for (let i = 0; i < Gameboard.gameboardArr.length; i++) {
-            let cell = document.getElementById(i);
+    checkResult();
 
-            cell.textContent = Gameboard.gameboardArr[i];
+    /*make sure spot not taken*/
+
+    if (endgame == 0) {
+      for (let i = 0; i < 250; i++) {
+        computerChoice = getComputerChoice();
+        if (Gameboard.gameboardArr[computerChoice] == "") {
+          break;
         }
-
+      }
     }
 
-    function checkWinner() {
-        const winner = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ]
-
-
-        for (let i = 0; i < winner.length; i++) {
-
-
-            if (Gameboard.gameboardArr[winner[i][0]] == Gameboard.gameboardArr[winner[i][1]]
-                && Gameboard.gameboardArr[winner[i][1]] == Gameboard.gameboardArr[winner[i][2]]
-                && Gameboard.gameboardArr[winner[i][0]] != ""
-                && Gameboard.gameboardArr[winner[i][1]] != ""
-                && Gameboard.gameboardArr[winner[i][2]] != "") {
-                return Gameboard.gameboardArr[winner[i][0]]
-            }
-
-        }
-        return 'loser'
-
+    // computer result added
+    if (endgame == 0) {
+      Gameboard.setField(computerChoice, "O");
+      player.textContent = "X's Turn";
+      checkResult();
     }
 
-    /*reset button listner*/
+    function checkResult() {
+      if (
+        Gameboard.gameboardArr.indexOf("") == -1 &&
+        checkWinner() == "loser"
+      ) {
+        message.textContent = "It's a Tie";
+        removeListener();
+        endgame = 1;
+      }
 
-    const btn = document.getElementById('reset');
-
-    btn.addEventListener('click', () => {
-
-        Gameboard.resetField()
-        setBoard()
-        message.textContent = ""
-        player.textContent = "X's Turn"
-        counter = 0
-        addListener()
-    })
-
-    function getComputerChoice() {
-        let computerChoice = Math.floor(Math.random() * 9);
-
-        return computerChoice
+      if (checkWinner() != "loser") {
+        message.textContent = checkWinner() + " Wins";
+        endgame = 1;
+        removeListener();
+      }
     }
 
+    setBoard();
+  }
 
-    return { counter, setBoard };
+  /*set board*/
+  const setBoard = () => {
+    for (let i = 0; i < Gameboard.gameboardArr.length; i++) {
+      let cell = document.getElementById(i);
 
+      cell.textContent = Gameboard.gameboardArr[i];
+    }
+  };
+
+  function checkWinner() {
+    const winner = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < winner.length; i++) {
+      if (
+        Gameboard.gameboardArr[winner[i][0]] ==
+          Gameboard.gameboardArr[winner[i][1]] &&
+        Gameboard.gameboardArr[winner[i][1]] ==
+          Gameboard.gameboardArr[winner[i][2]] &&
+        Gameboard.gameboardArr[winner[i][0]] != "" &&
+        Gameboard.gameboardArr[winner[i][1]] != "" &&
+        Gameboard.gameboardArr[winner[i][2]] != ""
+      ) {
+        return Gameboard.gameboardArr[winner[i][0]];
+      }
+    }
+    return "loser";
+  }
+
+  /*reset button listner*/
+
+  const btn = document.getElementById("reset");
+
+  btn.addEventListener("click", () => {
+    Gameboard.resetField();
+    setBoard();
+    message.textContent = "";
+    player.textContent = "X's Turn";
+    counter = 0;
+    addListener();
+  });
+
+  function getComputerChoice() {
+    let computerChoice = Math.floor(Math.random() * 9);
+
+    return computerChoice;
+  }
+
+  return { counter, setBoard };
 })();
-
